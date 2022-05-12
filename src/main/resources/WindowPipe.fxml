@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.SepiaTone?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="565.0" prefWidth="656.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ControllerPipe">
+   <children>
+      <AnchorPane layoutX="2.0" prefHeight="357.0" prefWidth="654.0" style="-fx-background-color: s;">
+         <children>
+            <Label layoutX="383.0" layoutY="14.0" text="Расчетное давление" />
+            <Label layoutX="366.0" layoutY="46.0" text="Расчетная температура" />
+            <TextField fx:id="pressField" layoutX="508.0" layoutY="10.0" prefHeight="25.0" prefWidth="62.0" />
+            <TextField fx:id="tempField" layoutX="508.0" layoutY="42.0" prefHeight="25.0" prefWidth="62.0" />
+            <Button fx:id="btnCalc" layoutX="413.0" layoutY="294.0" mnemonicParsing="false" onAction="#calcul" text="Расчет" textFill="#ff1e00">
+               <effect>
+                  <SepiaTone level="0.49" />
+               </effect></Button>
+            <ComboBox id="comboId" fx:id="comboNorm" layoutX="29.0" layoutY="19.0" prefWidth="150.0" promptText="Нормы" />
+            <ComboBox fx:id="comboMat" layoutX="29.0" layoutY="78.0" onAction="#choiseMat" prefWidth="150.0" promptText="Материал" />
+            <ComboBox fx:id="comboType" layoutX="194.0" layoutY="78.0" prefHeight="25.0" prefWidth="150.0" promptText="Тип, нормы на материал" />
+            <TextField fx:id="fieldOutd" layoutX="165.0" layoutY="142.0" prefHeight="25.0" prefWidth="81.0" />
+            <Label layoutX="31.0" layoutY="146.0" text="Наружный диаметр" />
+            <Label layoutX="31.0" layoutY="176.0" text="Коэф. сварного шва" />
+            <TextField fx:id="fieldSvarka" layoutX="165.0" layoutY="172.0" prefHeight="25.0" prefWidth="81.0" />
+            <ImageView fx:id="pipePicter" fitHeight="174.0" fitWidth="175.0" layoutX="444.0" layoutY="115.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@pipe-round.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="20.0" layoutY="262.0" text="Прибавка на коррозию" />
+            <Label layoutX="20.0" layoutY="298.0" text="Отрицательный допуск" />
+            <TextField fx:id="fieldCor" layoutX="165.0" layoutY="258.0" prefHeight="25.0" prefWidth="81.0" />
+            <TextField fx:id="fieldMinusDopusk" layoutX="165.0" layoutY="291.0" prefHeight="25.0" prefWidth="81.0" />
+            <ComboBox fx:id="ComboIsg" layoutX="433.0" layoutY="78.0" prefWidth="150.0" promptText="Нормы на изготовление" />
+            <Button layoutX="476.0" layoutY="294.0" mnemonicParsing="false" text="Проверка на устойчивость" />
+            <Label layoutX="261.0" layoutY="146.0" text="мм" />
+            <Label layoutX="252.0" layoutY="262.0" text="мм" />
+            <Label layoutX="252.0" layoutY="295.0" text="мм" />
+            <Label layoutX="261.0" layoutY="334.0" text="Результаты расчета">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="581.0" layoutY="14.0" text="МПа" />
+            <Label layoutX="580.0" layoutY="46.0" text="С" />
+         </children>
+         <effect>
+            <Lighting bumpInput="$null">
+               <light>
+                  <Light.Distant>
+                     <color>
+                        <Color red="0.8351242542266846" green="0.9605262875556946" blue="0.8004385828971863" />
+                     </color>
+                  </Light.Distant>
+               </light>
+            </Lighting>
+         </effect>
+      </AnchorPane>
+      <GridPane gridLinesVisible="true" layoutX="4.0" layoutY="361.0" prefHeight="184.0" prefWidth="650.0">
+        <columnConstraints>
+            <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="123.0" minWidth="10.0" prefWidth="53.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="158.0" minWidth="10.0" prefWidth="64.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="105.0" minWidth="10.0" prefWidth="40.0" />
+            <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="105.0" minWidth="10.0" prefWidth="62.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="173.0" minWidth="10.0" prefWidth="71.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="262.0" minWidth="10.0" prefWidth="51.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="316.0" minWidth="10.0" prefWidth="187.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="135.0" minWidth="10.0" prefWidth="80.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="94.0" minWidth="10.0" prefWidth="38.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <TextField fx:id="fieldYs" editable="false" prefHeight="25.0" prefWidth="277.0" GridPane.columnIndex="1">
+               <GridPane.margin>
+                  <Insets left="5.0" right="5.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField fx:id="fieldYs1" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="5.0" right="5.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField fx:id="fieldUs" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets left="5.0" right="5.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField editable="false" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets left="5.0" right="5.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField fx:id="fieldA" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <GridPane.margin>
+                  <Insets left="5.0" right="5.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField fx:id="fieldDopusk" GridPane.columnIndex="7" GridPane.rowIndex="5">
+               <GridPane.margin>
+                  <Insets left="5.0" right="5.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField fx:id="minThick" editable="false" GridPane.columnIndex="7">
+               <GridPane.margin>
+                  <Insets left="5.0" right="5.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField fx:id="fieldMinThickPlusDopusk" editable="false" GridPane.columnIndex="7" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="5.0" right="5.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField fx:id="fieldFinalThick" editable="false" GridPane.columnIndex="7" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets left="5.0" right="5.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField fx:id="fieldAnalitThick" editable="false" GridPane.columnIndex="7" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets left="5.0" right="5.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField fx:id="fieldDopuskPress" editable="false" GridPane.columnIndex="7" GridPane.rowIndex="4">
+               <GridPane.margin>
+                  <Insets left="5.0" right="5.0" />
+               </GridPane.margin>
+            </TextField>
+            <Label text=" Ϭ 0,2">
+               <GridPane.margin>
+                  <Insets left="5.0" />
+               </GridPane.margin>
+            </Label>
+            <Label text=" Ϭ 1,0" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="5.0" />
+               </GridPane.margin>
+            </Label>
+            <Label text=" Ϭ m" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets left="5.0" />
+               </GridPane.margin>
+            </Label>
+            <Label text=" Ϭ eH" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets left="5.0" />
+               </GridPane.margin>
+            </Label>
+            <Label text="А" GridPane.rowIndex="4">
+               <GridPane.margin>
+                  <Insets left="5.0" />
+               </GridPane.margin>
+            </Label>
+            <Label prefHeight="17.0" prefWidth="164.0" text="Допускаемое напряжение" GridPane.columnIndex="6" GridPane.rowIndex="5">
+               <GridPane.margin>
+                  <Insets left="5.0" />
+               </GridPane.margin>
+            </Label>
+            <Label prefHeight="17.0" prefWidth="27.0" text="МПа" textAlignment="CENTER" GridPane.columnIndex="2" />
+            <Label prefHeight="17.0" prefWidth="27.0" text="МПа" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Label prefHeight="17.0" prefWidth="27.0" text="МПа" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Label prefHeight="17.0" prefWidth="27.0" text="МПа" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <Label prefHeight="17.0" prefWidth="27.0" text="МПа" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+            <Label prefHeight="17.0" prefWidth="27.0" text="МПа" textAlignment="CENTER" GridPane.columnIndex="8" GridPane.rowIndex="5" />
+            <Label text=" Ϭ 0,2t" GridPane.columnIndex="3">
+               <GridPane.margin>
+                  <Insets left="5.0" />
+               </GridPane.margin>
+            </Label>
+            <Label text=" Ϭ 1,0t" GridPane.columnIndex="3" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="5.0" />
+               </GridPane.margin>
+            </Label>
+            <Label text=" Ϭ m,t" GridPane.columnIndex="3" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets left="5.0" />
+               </GridPane.margin>
+            </Label>
+            <Label text=" Ϭ eH,t" GridPane.columnIndex="3" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets left="5.0" />
+               </GridPane.margin>
+            </Label>
+            <Label text="Миним. толщина стенки" GridPane.columnIndex="6">
+               <GridPane.margin>
+                  <Insets left="5.0" />
+               </GridPane.margin>
+            </Label>
+            <Label text="Миним. толщина стенки + допуска" GridPane.columnIndex="6" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="5.0" />
+               </GridPane.margin>
+            </Label>
+            <Label text="Окончательная толщина стенки" GridPane.columnIndex="6" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets left="5.0" />
+               </GridPane.margin>
+            </Label>
+            <Label text="Аналитическая толщина стенки" GridPane.columnIndex="6" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets left="5.0" />
+               </GridPane.margin>
+            </Label>
+            <Label text="Допускаемое давление" GridPane.columnIndex="6" GridPane.rowIndex="4">
+               <GridPane.margin>
+                  <Insets left="5.0" />
+               </GridPane.margin>
+            </Label>
+            <Label text="мм" GridPane.columnIndex="8" />
+            <Label text="мм" GridPane.columnIndex="8" GridPane.rowIndex="1" />
+            <Label text="мм" GridPane.columnIndex="8" GridPane.rowIndex="2" />
+            <Label text="мм" GridPane.columnIndex="8" GridPane.rowIndex="3" />
+            <TextField fx:id="fieldYst" editable="false" GridPane.columnIndex="4">
+               <GridPane.margin>
+                  <Insets left="5.0" right="5.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField fx:id="fieldYs1t" editable="false" GridPane.columnIndex="4" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="5.0" right="5.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField fx:id="fieldUst" GridPane.columnIndex="4" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets left="5.0" right="5.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField GridPane.columnIndex="4" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets left="5.0" right="5.0" />
+               </GridPane.margin>
+            </TextField>
+            <Label prefHeight="17.0" prefWidth="27.0" text="МПа" textAlignment="CENTER" GridPane.columnIndex="5" />
+            <Label prefHeight="17.0" prefWidth="27.0" text="МПа" textAlignment="CENTER" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+            <Label prefHeight="17.0" prefWidth="27.0" text="МПа" textAlignment="CENTER" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+            <Label prefHeight="17.0" prefWidth="27.0" text="МПа" textAlignment="CENTER" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+            <Label prefHeight="17.0" prefWidth="27.0" text="МПа" textAlignment="CENTER" GridPane.columnIndex="8" GridPane.rowIndex="4" />
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" />
+         </padding>
+      </GridPane>
+   </children>
+</AnchorPane>
